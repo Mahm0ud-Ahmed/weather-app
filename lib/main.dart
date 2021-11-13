@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/core/params/param.dart';
 import 'package:weather_app/src/core/utils/constant.dart';
-import 'package:weather_app/src/data/repositories/weather_repository.dart';
+import 'package:weather_app/src/injector.dart';
 import 'package:weather_app/src/view_model/current_weather_cubit.dart';
 
-import 'src/data/resources/remote/weather_api.dart';
-
 void main() {
+  initializeDependencies();
   runApp(const WeatherApp());
 }
 
@@ -17,7 +16,7 @@ class WeatherApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CurrentWeatherCubit>(
-      create: (context) => CurrentWeatherCubit(),
+      create: (context) => injector(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Weather App',
@@ -35,8 +34,7 @@ class WeatherApp extends StatelessWidget {
                 ),
                 BlocBuilder<CurrentWeatherCubit, CurrentWeatherState>(
                   builder: (context, state) {
-                    final cubit = CurrentWeatherCubit(
-                        repository: WeatherRepository(api: WeatherAPI()));
+                    final cubit = CurrentWeatherCubit.get(context);
                     return ElevatedButton(
                         onPressed: () async {
                           await cubit.getCurrentWeather(kCurrentWeather,

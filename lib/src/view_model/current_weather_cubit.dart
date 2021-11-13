@@ -14,7 +14,8 @@ part 'current_weather_state.dart';
 class CurrentWeatherCubit extends Cubit<CurrentWeatherState> {
   CurrentWeatherCubit({this.repository}) : super(CurrentWeatherInitial());
 
-  // CurrentWeatherCubit get(BuildContext context) => BlocProvider.of(context);
+  static CurrentWeatherCubit get(BuildContext context) =>
+      BlocProvider.of(context);
 
   WeatherRepository? repository;
 
