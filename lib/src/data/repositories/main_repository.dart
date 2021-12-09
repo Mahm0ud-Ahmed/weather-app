@@ -3,7 +3,7 @@ import 'package:weather_app/src/core/api_query/api_query.dart';
 import 'package:weather_app/src/core/shared/remote/api_error/model/api_error_model.dart';
 import 'package:weather_app/src/core/utils/constant.dart';
 import 'package:weather_app/src/data/resources/remote/weather_api.dart';
-import 'package:weather_app/src/modules/favorite/model/search_country_model.dart';
+import 'package:weather_app/src/modules/favorite/model/remote/search_country_model.dart';
 import 'package:weather_app/src/modules/forecast/model/forecast_model.dart';
 import 'package:weather_app/src/modules/home/model/country_weather_model.dart';
 
@@ -14,7 +14,7 @@ class MainRepository {
 
   Future<Either<APIErrorModel, CountryWeatherModel>> getCountryWeather(
       APIQuery param) async {
-    final response = await api!.callGetAPI(kCurrentWeather, param);
+    final response = await api!.callGetAPI(kWeatherMyCountry, param);
     try {
       return Right(CountryWeatherModel.fromJson(response.data!));
     } catch (error) {

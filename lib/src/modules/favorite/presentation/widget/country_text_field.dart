@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/src/config/themes/icon_broken.dart';
 import 'package:weather_app/src/modules/favorite/business_logic/favorite_country_cubit.dart';
 import 'package:weather_app/src/modules/favorite/business_logic/favorite_country_state.dart';
 
@@ -32,34 +33,24 @@ class _CountryTextFieldState extends State<CountryTextField> {
   Widget build(BuildContext context) {
     return BlocBuilder<FavoriteCountryCubit, FavoriteCountryState>(
       builder: (context, state) {
-        if (state is SuccessCountryDetails) {
-          _controller.clear();
-        }
-        return Column(
-          children: [
-            CustomTextField(
-              controller: _controller,
-              prefixIcon: const Icon(Icons.search),
-              suffix: UnconstrainedBox(
-                child: SizedBox(
-                  width: 18,
-                  height: 18,
-                  child: state is LoadingCountrySearch
-                      ? const CircularProgressIndicator(
-                          color: Colors.green,
-                        )
-                      : Container(),
-                ),
-              ),
-              hint: 'Search of Country',
-              onChange: (country) async {
-                await _cubit!.getAllCountrySearch(country!);
-              },
+        return CustomTextField(
+          controller: _controller,
+          prefixIcon: const Icon(IconBroken.Search),
+          suffix: UnconstrainedBox(
+            child: SizedBox(
+              width: 18,
+              height: 18,
+              child: state is LoadingCountrySearch
+                  ? const CircularProgressIndicator(
+                      color: Colors.green,
+                    )
+                  : Container(),
             ),
-            state is LoadingCountryDetails
-                ? const LinearProgressIndicator()
-                : Container(),
-          ],
+          ),
+          hint: 'Search of Country',
+          onChange: (country) async {
+            await _cubit!.getAllCountrySearch(country!);
+          },
         );
       },
     );

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/src/core/shared/remote/api_error/entity/api_error.dart';
-import 'package:weather_app/src/modules/favorite/entity/details_country.dart';
-import 'package:weather_app/src/modules/home/entity/country_weather.dart';
+import 'package:weather_app/src/modules/favorite/entity/local/favorite.dart';
+import 'package:weather_app/src/modules/favorite/entity/remote/details_country.dart';
 
 @immutable
 abstract class FavoriteCountryState {
   List<DetailsCountry>? countries;
-  CountryWeather? countryWeather;
+  List<Favorite>? favorite;
   APIError? error;
 
-  FavoriteCountryState({this.countries, this.countryWeather, this.error});
+  FavoriteCountryState({this.countries, this.favorite, this.error});
 }
 
 class FavoriteCountryInitial extends FavoriteCountryState {}
@@ -25,13 +25,17 @@ class ErrorCountrySearch extends FavoriteCountryState {
   ErrorCountrySearch({APIError? error}) : super(error: error);
 }
 
-class LoadingCountryDetails extends FavoriteCountryState {}
+class LoadingFavoriteCountry extends FavoriteCountryState {}
 
-class SuccessCountryDetails extends FavoriteCountryState {
-  SuccessCountryDetails({CountryWeather? countryWeather})
-      : super(countryWeather: countryWeather);
+class SuccessFavoriteCountry extends FavoriteCountryState {
+  SuccessFavoriteCountry({List<Favorite>? favoriteCountry})
+      : super(favorite: favoriteCountry);
 }
 
-class ErrorCountryDetails extends FavoriteCountryState {
-  ErrorCountryDetails({APIError? error}) : super(error: error);
+class ErrorFavoriteCountry extends FavoriteCountryState {}
+
+class ErrorCountryUpdateDetails extends FavoriteCountryState {
+  ErrorCountryUpdateDetails({APIError? error}) : super(error: error);
 }
+
+class ClearSearchList extends FavoriteCountryState {}

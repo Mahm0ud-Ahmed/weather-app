@@ -1,4 +1,4 @@
-import 'package:weather_app/src/modules/favorite/entity/details_country.dart';
+import 'package:weather_app/src/modules/favorite/entity/remote/details_country.dart';
 
 class DetailsCountryModel extends DetailsCountry {
   DetailsCountryModel({

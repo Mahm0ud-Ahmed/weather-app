@@ -22,7 +22,7 @@ class CustomContainerWithShadow extends StatelessWidget {
       padding: padding,
       width: width ?? double.infinity,
       decoration: BoxDecoration(
-        color: backgroundColor ?? Colors.white,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(

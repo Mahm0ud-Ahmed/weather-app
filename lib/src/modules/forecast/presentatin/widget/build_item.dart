@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/src/core/shared/widget/custom_banner.dart';
+import 'package:weather_app/src/core/shared/widget/custom_container_with_shadow.dart';
 
 class BuildItem extends StatelessWidget {
   const BuildItem({
@@ -21,16 +22,7 @@ class BuildItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blue.shade100.withOpacity(0.6),
-            blurRadius: 20,
-            spreadRadius: 3,
-          ),
-        ],
-      ),
+    return CustomContainerWithShadow(
       child: Card(
         color: Colors.white,
         shape: RoundedRectangleBorder(

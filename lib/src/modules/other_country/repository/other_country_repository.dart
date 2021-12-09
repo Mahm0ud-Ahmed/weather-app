@@ -6,16 +6,10 @@ import 'package:weather_app/src/modules/favorite/entity/remote/search_country.da
 import 'package:weather_app/src/modules/forecast/entity/forecast.dart';
 import 'package:weather_app/src/modules/home/entity/country_weather.dart';
 
-class FavoriteRepository {
+class OtherCountryRepository {
   final MainRepository? repository;
 
-  FavoriteRepository({this.repository});
-
-  Future<Either<APIError, SearchCountry>> getAllCountrySearch(
-      String country) async {
-    return await repository!.getAllCountrySearch(country)
-      ..fold((error) => error, (country) => country);
-  }
+  OtherCountryRepository({this.repository});
 
   Future<Either<APIError, CountryWeather>> getOtherCountryWeather(
       APIQuery param) async {

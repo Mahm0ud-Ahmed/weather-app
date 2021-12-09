@@ -25,6 +25,7 @@ class MainWeatherCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainerWithShadow(
       padding: const EdgeInsets.symmetric(vertical: 12),
+      backgroundColor: Colors.white,
       child: AspectRatio(
         aspectRatio: MediaQuery.of(context).orientation == Orientation.portrait
             ? 1.4

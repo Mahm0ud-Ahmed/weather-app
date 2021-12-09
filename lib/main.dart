@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:weather_app/src/core/utils/constant.dart';
 import 'package:weather_app/src/injector.dart';
 import 'package:weather_app/src/modules/favorite/business_logic/favorite_country_cubit.dart';
 import 'package:weather_app/src/modules/forecast/business_logic/forecast_weather_cubit.dart';
 import 'package:weather_app/src/modules/nav_bar/nav_bar.dart';
+import 'package:weather_app/src/modules/other_country/business_logic/other_country_cubit.dart';
+import 'package:weather_app/src/observer.dart';
 
 import 'src/config/themes/theme.dart';
 import 'src/modules/home/business_logic/current_weather_cubit.dart';
 
-void main() {
-  initializeDependencies();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  hasConnection = await InternetConnectionChecker().hasConnection;
+  await initializeDependencies();
+  Bloc.observer = MyBlocObserver();
   runApp(const WeatherApp());
 }
 
@@ -27,6 +34,9 @@ class WeatherApp extends StatelessWidget {
           create: (context) => injector(),
         ),
         BlocProvider<FavoriteCountryCubit>(
+          create: (context) => injector(),
+        ),
+        BlocProvider<OtherCountryCubit>(
           create: (context) => injector(),
         ),
       ],

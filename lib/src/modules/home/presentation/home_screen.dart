@@ -43,8 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state is SuccessForecastsWeather) {
             _forecasts = state.forecasts!;
           }
-          print('Weather ${_currentWeather == null}');
-          print('Forecast: ${_forecasts == null}');
+          // print('Weather ${_currentWeather == null}');
+          // print('Forecast: ${_forecasts == null}');
           return _currentWeather != null && _forecasts != null
               ? SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
