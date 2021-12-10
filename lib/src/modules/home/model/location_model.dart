@@ -1,4 +1,4 @@
-import 'package:weather_app/src/modules/home/entity/location.dart';
+import 'package:weather_app/src/modules/home/entity/remote/location.dart';
 
 class LocationModel extends Location {
   LocationModel({

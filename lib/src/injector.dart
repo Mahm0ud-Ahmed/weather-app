@@ -31,7 +31,7 @@ initializeDependencies() async {
 
   // Sub Weather Repository Dependence
   injector.registerSingleton<WeatherRepository>(
-    WeatherRepository(repository: injector()),
+    WeatherRepository(repository: injector(), database: injector()),
   );
 
   // Sub Forecast Repository Dependence
@@ -51,7 +51,7 @@ initializeDependencies() async {
 
   // Current Weather Cubit Dependence
   injector.registerFactory<CurrentWeatherCubit>(
-    () => CurrentWeatherCubit(repository: injector()),
+    () => CurrentWeatherCubit(repository: injector(), database: injector()),
   );
 
   // Forecast Weather Cubit Dependence

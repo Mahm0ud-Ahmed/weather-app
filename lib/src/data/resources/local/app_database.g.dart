@@ -63,6 +63,8 @@ class _$AppDatabase extends AppDatabase {
 
   FavoriteDao? _favoriteDaoInstance;
 
+  MyCountryDao? _myCountryDaoInstance;
+
   Future<sqflite.Database> open(String path, List<Migration> migrations,
       [Callback? callback]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
@@ -83,6 +85,8 @@ class _$AppDatabase extends AppDatabase {
       onCreate: (database, version) async {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `favorite` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `date` TEXT, `tempC` REAL, `tempF` REAL, `urlIcon` TEXT, `region` TEXT, `country` TEXT, `latLong` TEXT, `humidity` INTEGER, `wind` REAL)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `myCountry` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `date` TEXT, `tempC` REAL, `tempF` REAL, `urlIcon` TEXT, `sunState` TEXT, `location` TEXT, `humidity` INTEGER, `cloud` INTEGER, `wind` REAL, `sunrise` TEXT, `sunset` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -93,6 +97,11 @@ class _$AppDatabase extends AppDatabase {
   @override
   FavoriteDao get favoriteDao {
     return _favoriteDaoInstance ??= _$FavoriteDao(database, changeListener);
+  }
+
+  @override
+  MyCountryDao get myCountryDao {
+    return _myCountryDaoInstance ??= _$MyCountryDao(database, changeListener);
   }
 }
 
@@ -182,13 +191,98 @@ class _$FavoriteDao extends FavoriteDao {
   }
 
   @override
-  Future<int> updateCountryInFavorite(Favorite favorite) async {
-    return await _favoriteUpdateAdapter.updateAndReturnChangedRows(
+  Future<int> updateCountryInFavorite(Favorite favorite) {
+    return _favoriteUpdateAdapter.updateAndReturnChangedRows(
         favorite, OnConflictStrategy.abort);
   }
 
   @override
   Future<int> deleteCountryFromFavorite(Favorite favorite) {
     return _favoriteDeletionAdapter.deleteAndReturnChangedRows(favorite);
+  }
+}
+
+class _$MyCountryDao extends MyCountryDao {
+  _$MyCountryDao(this.database, this.changeListener)
+      : _queryAdapter = QueryAdapter(database),
+        _myCountryWeatherInsertionAdapter = InsertionAdapter(
+            database,
+            'myCountry',
+            (MyCountryWeather item) => <String, Object?>{
+                  'id': item.id,
+                  'date': item.date,
+                  'tempC': item.tempC,
+                  'tempF': item.tempF,
+                  'urlIcon': item.urlIcon,
+                  'sunState': item.sunState,
+                  'location': item.location,
+                  'humidity': item.humidity,
+                  'cloud': item.cloud,
+                  'wind': item.wind,
+                  'sunrise': item.sunrise,
+                  'sunset': item.sunset
+                }),
+        _myCountryWeatherUpdateAdapter = UpdateAdapter(
+            database,
+            'myCountry',
+            ['id'],
+            (MyCountryWeather item) => <String, Object?>{
+                  'id': item.id,
+                  'date': item.date,
+                  'tempC': item.tempC,
+                  'tempF': item.tempF,
+                  'urlIcon': item.urlIcon,
+                  'sunState': item.sunState,
+                  'location': item.location,
+                  'humidity': item.humidity,
+                  'cloud': item.cloud,
+                  'wind': item.wind,
+                  'sunrise': item.sunrise,
+                  'sunset': item.sunset
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<MyCountryWeather> _myCountryWeatherInsertionAdapter;
+
+  final UpdateAdapter<MyCountryWeather> _myCountryWeatherUpdateAdapter;
+
+  @override
+  Future<MyCountryWeather?> getWeatherForMyCountry() async {
+    return _queryAdapter.query('SELECT * FROM myCountry',
+        mapper: (Map<String, Object?> row) => MyCountryWeather(
+            id: row['id'] as int?,
+            date: row['date'] as String?,
+            tempC: row['tempC'] as double?,
+            tempF: row['tempF'] as double?,
+            urlIcon: row['urlIcon'] as String?,
+            sunState: row['sunState'] as String?,
+            location: row['location'] as String?,
+            humidity: row['humidity'] as int?,
+            cloud: row['cloud'] as int?,
+            wind: row['wind'] as double?,
+            sunrise: row['sunrise'] as String?,
+            sunset: row['sunset'] as String?));
+  }
+
+  @override
+  Future<void> deleteAllData() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM myCountry');
+  }
+
+  @override
+  Future<int> insertDataMyWeather(MyCountryWeather myCountryWeather) {
+    return _myCountryWeatherInsertionAdapter.insertAndReturnId(
+        myCountryWeather, OnConflictStrategy.replace);
+  }
+
+  @override
+  Future<int> updateDataMyWeather(MyCountryWeather myCountryWeather) {
+    return _myCountryWeatherUpdateAdapter.updateAndReturnChangedRows(
+        myCountryWeather, OnConflictStrategy.abort);
   }
 }

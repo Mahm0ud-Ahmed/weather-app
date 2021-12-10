@@ -4,7 +4,7 @@ import 'package:weather_app/src/core/shared/remote/api_error/entity/api_error.da
 import 'package:weather_app/src/data/repositories/main_repository.dart';
 import 'package:weather_app/src/modules/favorite/entity/remote/search_country.dart';
 import 'package:weather_app/src/modules/forecast/entity/forecast.dart';
-import 'package:weather_app/src/modules/home/entity/country_weather.dart';
+import 'package:weather_app/src/modules/home/entity/remote/country_weather.dart';
 
 class OtherCountryRepository {
   final MainRepository? repository;

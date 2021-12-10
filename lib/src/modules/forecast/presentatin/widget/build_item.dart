@@ -66,8 +66,11 @@ class BuildItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Image.network(
-                pathImg!,
+              FadeInImage.assetNetwork(
+                placeholder: 'assets/images/no_image.png',
+                image: pathImg!,
+                width: 64,
+                height: 64,
               ),
               buildTextStateWeather(context, stateSun!),
             ],

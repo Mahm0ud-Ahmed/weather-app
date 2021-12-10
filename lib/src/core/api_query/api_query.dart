@@ -1,13 +1,13 @@
 import 'package:weather_app/src/core/utils/constant.dart';
 
 class APIQuery {
-  String? nameLocation;
-  String? airQuality;
-  String? weatherAlert;
-  int? numberOfDays;
-  String? apiKey;
+  final String? nameLocation;
+  final String? airQuality;
+  final String? weatherAlert;
+  final int? numberOfDays;
+  final String? apiKey;
 
-  APIQuery(
+  const APIQuery(
       {this.nameLocation,
       this.airQuality,
       this.weatherAlert,

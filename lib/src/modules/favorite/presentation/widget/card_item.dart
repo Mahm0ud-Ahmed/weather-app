@@ -47,8 +47,11 @@ class CardItem extends StatelessWidget {
                           .headline3!
                           .copyWith(fontSize: 24, color: Colors.blue.shade300),
                     ),
-                    Image.network(
-                      urlIcon!.replaceAll('//', 'https://'),
+                    FadeInImage.assetNetwork(
+                      placeholder: 'assets/images/no_image.png',
+                      image: urlIcon!.replaceAll('//', 'https://'),
+                      width: 64,
+                      height: 64,
                     ),
                   ],
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

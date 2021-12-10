@@ -7,7 +7,7 @@ import 'package:weather_app/src/data/resources/local/app_database.dart';
 import 'package:weather_app/src/modules/favorite/entity/local/favorite.dart';
 import 'package:weather_app/src/modules/favorite/entity/remote/details_country.dart';
 import 'package:weather_app/src/modules/favorite/repository/favorite_repository.dart';
-import 'package:weather_app/src/modules/home/entity/country_weather.dart';
+import 'package:weather_app/src/modules/home/entity/remote/country_weather.dart';
 import 'favorite_country_state.dart';
 
 class FavoriteCountryCubit extends Cubit<FavoriteCountryState> {
@@ -27,10 +27,15 @@ class FavoriteCountryCubit extends Cubit<FavoriteCountryState> {
   CountryWeather? weather;
 
   Future<void> getFavoriteCountry() async {
-    emit(LoadingFavoriteCountry());
     try {
-      favorite = await database!.favoriteDao.getAllFavorite();
-      emit(SuccessFavoriteCountry(favoriteCountry: favorite));
+      final allFavorite = await database!.favoriteDao.getAllFavorite();
+      if (favorite == null) {
+        favorite = allFavorite;
+        emit(SuccessFavoriteCountry(favoriteCountry: allFavorite));
+      } else if (allFavorite.length > favorite!.length) {
+        favorite = allFavorite;
+        emit(SuccessFavoriteCountry(favoriteCountry: allFavorite));
+      }
     } catch (e) {
       print(e.toString());
       emit(ErrorFavoriteCountry());

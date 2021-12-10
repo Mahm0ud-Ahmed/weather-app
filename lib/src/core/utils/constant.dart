@@ -15,3 +15,9 @@ const String kWeatherMyCountryTableName = 'myCountry';
 
 // State Internet Connection
 late bool hasConnection;
+
+String? locationAddress;
+String? country = 'Egypt';
+String? temperature = 'Celsius';
+String? wind = 'km';
+int? forecastDays = 3;

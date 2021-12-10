@@ -8,7 +8,7 @@ import 'package:weather_app/src/core/shared/remote/api_error/entity/astro.dart';
 import 'package:weather_app/src/data/resources/local/app_database.dart';
 import 'package:weather_app/src/modules/favorite/entity/local/favorite.dart';
 import 'package:weather_app/src/modules/forecast/entity/forecast.dart';
-import 'package:weather_app/src/modules/home/entity/country_weather.dart';
+import 'package:weather_app/src/modules/home/entity/remote/country_weather.dart';
 import 'package:weather_app/src/modules/other_country/repository/other_country_repository.dart';
 
 part 'other_country_state.dart';

@@ -1,4 +1,4 @@
-import 'package:weather_app/src/modules/home/entity/weather_info.dart';
+import 'package:weather_app/src/modules/home/entity/remote/weather_info.dart';
 
 class WeatherInfoModel extends WeatherInfo {
   WeatherInfoModel({

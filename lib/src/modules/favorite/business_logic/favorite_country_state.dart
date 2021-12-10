@@ -25,8 +25,6 @@ class ErrorCountrySearch extends FavoriteCountryState {
   ErrorCountrySearch({APIError? error}) : super(error: error);
 }
 
-class LoadingFavoriteCountry extends FavoriteCountryState {}
-
 class SuccessFavoriteCountry extends FavoriteCountryState {
   SuccessFavoriteCountry({List<Favorite>? favoriteCountry})
       : super(favorite: favoriteCountry);

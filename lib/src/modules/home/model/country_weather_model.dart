@@ -1,4 +1,4 @@
-import 'package:weather_app/src/modules/home/entity/country_weather.dart';
+import 'package:weather_app/src/modules/home/entity/remote/country_weather.dart';
 import 'package:weather_app/src/modules/home/model/weather_info_model.dart';
 
 import 'location_model.dart';

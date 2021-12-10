@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/src/config/themes/icon_broken.dart';
 import 'package:weather_app/src/core/shared/widget/custom_banner.dart';
 import 'package:weather_app/src/core/shared/widget/custom_container_with_shadow.dart';
+import 'package:weather_app/src/core/utils/constant.dart';
 
 class MainWeatherCard extends StatelessWidget {
   const MainWeatherCard(
@@ -70,9 +71,18 @@ class MainWeatherCard extends StatelessWidget {
           '$temp °',
           style: Theme.of(context).textTheme.headline3,
         ),
-        Image.network(
-          pathIcon.replaceAll('//', 'https://'),
-        ),
+        hasConnection
+            ? FadeInImage.assetNetwork(
+                placeholder: 'assets/images/no_image.png',
+                image: pathIcon.replaceAll('//', 'https://'),
+                width: 64,
+                height: 64,
+              )
+            : Image.asset(
+                'assets/images/no_image.png',
+                width: 64,
+                height: 64,
+              ),
       ],
     );
   }

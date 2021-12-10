@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/src/core/api_query/api_query.dart';
 import 'package:weather_app/src/core/shared/remote/api_error/entity/api_error.dart';
+import 'package:weather_app/src/core/utils/constant.dart';
 import 'package:weather_app/src/modules/forecast/entity/forecast.dart';
 import 'package:weather_app/src/modules/forecast/entity/forecast_day.dart';
 import 'package:weather_app/src/modules/forecast/repository/forecast_repository.dart';
@@ -21,8 +22,8 @@ class ForecastWeatherCubit extends Cubit<ForecastWeatherState> {
   Future<void> getForecasts() async {
     if (forecasts == null) {
       final result = await repository!.getForecast(APIQuery(
-        nameLocation: 'Egypt',
-        numberOfDays: 8,
+        nameLocation: country,
+        numberOfDays: forecastDays,
       ));
       result.fold((APIError error) {
         print(error.message);

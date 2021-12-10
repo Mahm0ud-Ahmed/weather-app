@@ -6,7 +6,7 @@ import 'package:weather_app/src/core/shared/widget/main_weather_card.dart';
 import 'package:weather_app/src/core/shared/widget/sun_info.dart';
 import 'package:weather_app/src/core/shared/widget/weather_details.dart';
 import 'package:weather_app/src/modules/favorite/entity/local/favorite.dart';
-import 'package:weather_app/src/modules/home/entity/country_weather.dart';
+import 'package:weather_app/src/modules/home/entity/remote/country_weather.dart';
 import 'package:weather_app/src/modules/other_country/business_logic/other_country_cubit.dart';
 
 class OtherCountryDetails extends StatefulWidget {

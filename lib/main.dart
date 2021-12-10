@@ -16,8 +16,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   hasConnection = await InternetConnectionChecker().hasConnection;
   await initializeDependencies();
-  Bloc.observer = MyBlocObserver();
-  runApp(const WeatherApp());
+  BlocOverrides.runZoned(() => runApp(const WeatherApp()),
+      blocObserver: MyBlocObserver());
+  // Bloc.observer = MyBlocObserver();
 }
 
 class WeatherApp extends StatelessWidget {
