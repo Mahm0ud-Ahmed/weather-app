@@ -9,6 +9,7 @@ import 'package:weather_app/src/modules/forecast/business_logic/forecast_weather
 import 'package:weather_app/src/modules/forecast/repository/forecast_repository.dart';
 import 'package:weather_app/src/modules/other_country/business_logic/other_country_cubit.dart';
 import 'package:weather_app/src/modules/other_country/repository/other_country_repository.dart';
+import 'package:weather_app/src/modules/setting/business_logic/setting_weather_cubit.dart';
 
 import 'modules/home/business_logic/current_weather_cubit.dart';
 import 'modules/home/repository/weather_repository.dart';
@@ -66,4 +67,6 @@ initializeDependencies() async {
   // Other Country Cubit Dependence
   injector.registerFactory<OtherCountryCubit>(
       () => OtherCountryCubit(database: injector(), repository: injector()));
+
+  injector.registerFactory<SettingWeatherCubit>(() => SettingWeatherCubit());
 }

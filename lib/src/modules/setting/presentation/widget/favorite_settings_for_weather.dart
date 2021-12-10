@@ -11,7 +11,7 @@ class FavoriteSettingsForWeather extends StatelessWidget {
   final String? title;
   late String? dropdownValue;
   final List<String>? valueGroup;
-  final Function()? onChooseItem;
+  final Function(String? newValue)? onChooseItem;
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +19,12 @@ class FavoriteSettingsForWeather extends StatelessWidget {
       title: Text(title!),
       trailing: DropdownButton<String>(
         value: dropdownValue,
-        onChanged: (String? newVal) {
-          dropdownValue = newVal!;
-        },
+        onChanged: onChooseItem,
         underline: Container(),
         items: valueGroup!.map<DropdownMenuItem<String>>((value) {
           return DropdownMenuItem<String>(
             child: Text(value),
             value: value,
-            onTap: onChooseItem,
           );
         }).toList(),
       ),

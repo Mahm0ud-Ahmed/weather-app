@@ -86,7 +86,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `favorite` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `date` TEXT, `tempC` REAL, `tempF` REAL, `urlIcon` TEXT, `region` TEXT, `country` TEXT, `latLong` TEXT, `humidity` INTEGER, `wind` REAL)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `myCountry` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `date` TEXT, `tempC` REAL, `tempF` REAL, `urlIcon` TEXT, `sunState` TEXT, `location` TEXT, `humidity` INTEGER, `cloud` INTEGER, `wind` REAL, `sunrise` TEXT, `sunset` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `myCountry` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `date` TEXT, `tempC` REAL, `tempF` REAL, `urlIcon` TEXT, `sunState` TEXT, `location` TEXT, `humidity` INTEGER, `cloud` INTEGER, `windK` REAL, `windM` REAL, `sunrise` TEXT, `sunset` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -218,7 +218,8 @@ class _$MyCountryDao extends MyCountryDao {
                   'location': item.location,
                   'humidity': item.humidity,
                   'cloud': item.cloud,
-                  'wind': item.wind,
+                  'windK': item.windK,
+                  'windM': item.windM,
                   'sunrise': item.sunrise,
                   'sunset': item.sunset
                 }),
@@ -236,7 +237,8 @@ class _$MyCountryDao extends MyCountryDao {
                   'location': item.location,
                   'humidity': item.humidity,
                   'cloud': item.cloud,
-                  'wind': item.wind,
+                  'windK': item.windK,
+                  'windM': item.windM,
                   'sunrise': item.sunrise,
                   'sunset': item.sunset
                 });
@@ -264,7 +266,8 @@ class _$MyCountryDao extends MyCountryDao {
             location: row['location'] as String?,
             humidity: row['humidity'] as int?,
             cloud: row['cloud'] as int?,
-            wind: row['wind'] as double?,
+            windK: row['windK'] as double?,
+            windM: row['windM'] as double?,
             sunrise: row['sunrise'] as String?,
             sunset: row['sunset'] as String?));
   }

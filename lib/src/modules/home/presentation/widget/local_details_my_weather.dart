@@ -24,7 +24,7 @@ class LocalDetailsMyWeather extends StatelessWidget {
         WeatherDetails(
           humidity: myCountryWeatherDB!.humidity.toString(),
           cloud: myCountryWeatherDB!.cloud.toString(),
-          wind: myCountryWeatherDB!.wind.toString(),
+          wind: myCountryWeatherDB!.windK.toString(),
         ),
         SunInfo(
           sunrise: myCountryWeatherDB!.sunrise,

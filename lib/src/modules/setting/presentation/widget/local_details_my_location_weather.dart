@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/config/themes/icon_broken.dart';
 import 'package:weather_app/src/core/shared/widget/weather_details.dart';
+import 'package:weather_app/src/core/utils/constant.dart';
+import 'package:weather_app/src/modules/setting/business_logic/setting_weather_cubit.dart';
 
-class DetailsMyLocationWeather extends StatelessWidget {
-  const DetailsMyLocationWeather({Key? key}) : super(key: key);
+class LocalDetailsMyLocationWeather extends StatelessWidget {
+  const LocalDetailsMyLocationWeather({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,31 +33,44 @@ class DetailsMyLocationWeather extends StatelessWidget {
           ],
         ),
         Text(
-          'Saqqarah, Al Jizah, Egypt',
+          locationAddress!,
           style: Theme.of(context).textTheme.headline6,
         ),
         const SizedBox(
-          height: 32,
+          height: 8,
         ),
-        const Icon(
-          Icons.wb_sunny_sharp,
-          size: 100,
+        Image.asset(
+          'assets/images/no_image.png',
+          width: 100,
+          height: 100,
         ),
         const SizedBox(
-          height: 16,
+          height: 8,
         ),
-        buildTextStateWeather(context, 'Shine'),
+        buildTextStateWeather(context, myCountryWeatherDB!.sunState!),
         const SizedBox(
           height: 32,
         ),
-        Text(
-          '20°',
-          style: Theme.of(context).textTheme.headline1,
+        BlocBuilder<SettingWeatherCubit, SettingWeatherState>(
+          builder: (context, state) {
+            return Text(
+              temperature!.contains('C')
+                  ? myCountryWeatherDB!.tempC!.toInt().toString() + '°'
+                  : myCountryWeatherDB!.tempF!.toString() + '°',
+              style: Theme.of(context).textTheme.headline1,
+            );
+          },
         ),
-        const WeatherDetails(
-          wind: '13.0',
-          cloud: '25',
-          humidity: '56',
+        BlocBuilder<SettingWeatherCubit, SettingWeatherState>(
+          builder: (context, state) {
+            return WeatherDetails(
+              wind: wind!.contains('K')
+                  ? myCountryWeatherDB!.windK!.toString() + ' Km/h'
+                  : myCountryWeatherDB!.windM!.toString() + ' Mph/h',
+              cloud: myCountryWeatherDB!.cloud!.toString(),
+              humidity: myCountryWeatherDB!.humidity!.toString(),
+            );
+          },
         ),
       ],
     );

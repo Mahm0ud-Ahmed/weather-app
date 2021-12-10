@@ -23,12 +23,9 @@ class CurrentWeatherCubit extends Cubit<CurrentWeatherState> {
   WeatherRepository? repository;
   AppDatabase? database;
 
-  CountryWeather? weather;
   List<ForecastDay>? forecasts;
 
   List<HourInfo>? hoursInfo = [];
-
-  MyCountryWeather? myCountryWeatherDB;
 
   Future<void> getCurrentWeather(APIQuery param) async {
     if (weather == null) {
@@ -103,13 +100,15 @@ class CurrentWeatherCubit extends Cubit<CurrentWeatherState> {
     return await database!.myCountryDao.insertDataMyWeather(MyCountryWeather(
       date: weather!.location!.localtime,
       tempC: weather!.weatherInfo!.tempC,
+      tempF: weather!.weatherInfo!.tempF,
       urlIcon: weather!.weatherInfo!.condition!.icon,
       sunState: weather!.weatherInfo!.condition!.text,
       location: weather!.location!.name.toString() +
           weather!.location!.country.toString(),
       humidity: weather!.weatherInfo!.humidity,
       cloud: weather!.weatherInfo!.cloud,
-      wind: weather!.weatherInfo!.windKph,
+      windK: weather!.weatherInfo!.windKph,
+      windM: weather!.weatherInfo!.windMph,
       sunrise: forecasts![0].astro!.sunrise,
       sunset: forecasts![0].astro!.sunset,
     ));

@@ -17,7 +17,7 @@ class WeatherDetails extends StatelessWidget {
         children: [
           buildWeatherDetails('assets/images/humidity.png', humidity! + ' %'),
           buildWeatherDetails('assets/images/cloudy.png', cloud! + ' %'),
-          buildWeatherDetails('assets/images/wind.png', wind! + ' Km/h'),
+          buildWeatherDetails('assets/images/wind.png', wind!),
         ],
       ),
     );

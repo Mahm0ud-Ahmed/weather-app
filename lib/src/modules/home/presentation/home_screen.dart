@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/src/core/api_query/api_query.dart';
-import 'package:weather_app/src/core/shared/widget/main_weather_card.dart';
-import 'package:weather_app/src/core/shared/widget/sun_info.dart';
-import 'package:weather_app/src/core/shared/widget/weather_details.dart';
 import 'package:weather_app/src/core/utils/constant.dart';
 import 'package:weather_app/src/modules/forecast/entity/forecast_day.dart';
 import 'package:weather_app/src/modules/home/business_logic/current_weather_cubit.dart';
@@ -32,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _cubit ??= CurrentWeatherCubit.get(context);
     _cubit!.getWeatherForCountry();
-    _currentWeather ??= _cubit!.weather;
+    _currentWeather ??= weather;
     _forecasts ??= _cubit!.forecasts;
   }
 

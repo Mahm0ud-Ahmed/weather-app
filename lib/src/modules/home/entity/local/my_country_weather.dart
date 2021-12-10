@@ -14,7 +14,8 @@ class MyCountryWeather extends Equatable {
   String? location;
   int? humidity;
   int? cloud;
-  double? wind;
+  double? windK;
+  double? windM;
   String? sunrise;
   String? sunset;
 
@@ -28,7 +29,8 @@ class MyCountryWeather extends Equatable {
       this.location,
       this.humidity,
       this.cloud,
-      this.wind,
+      this.windK,
+      this.windM,
       this.sunrise,
       this.sunset});
 
