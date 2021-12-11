@@ -35,7 +35,10 @@ class _SettingScreenState extends State<SettingScreen> {
                   hasConnection
                       ? const RemoteDetailsMyLocationWeather()
                       : const LocalDetailsMyLocationWeather(),
-                  const Divider(),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 30),
+                    child: Divider(),
+                  ),
                   FavoriteSettingsForWeather(
                     title: 'Temperature:',
                     dropdownValue: temperature,

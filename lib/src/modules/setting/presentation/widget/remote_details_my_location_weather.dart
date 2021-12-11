@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/config/themes/icon_broken.dart';
+import 'package:weather_app/src/core/shared/widget/custom_container_with_shadow.dart';
 import 'package:weather_app/src/core/shared/widget/weather_details.dart';
 import 'package:weather_app/src/core/utils/constant.dart';
 import 'package:weather_app/src/modules/choose_country/presentation/choose_country.dart';
@@ -77,12 +78,16 @@ class RemoteDetailsMyLocationWeather extends StatelessWidget {
         ),
         BlocBuilder<SettingWeatherCubit, SettingWeatherState>(
           builder: (context, state) {
-            return WeatherDetails(
-              wind: wind!.contains('K')
-                  ? weather!.weatherInfo!.windKph!.toString() + ' Km/h'
-                  : weather!.weatherInfo!.windMph!.toString() + ' Mph/h',
-              cloud: weather!.weatherInfo!.cloud!.toString(),
-              humidity: weather!.weatherInfo!.humidity!.toString(),
+            return CustomContainerWithShadow(
+              backgroundColor: Colors.white,
+              shadowColor: Colors.blue.shade100,
+              child: WeatherDetails(
+                wind: wind!.contains('K')
+                    ? weather!.weatherInfo!.windKph!.toString() + ' Km/h'
+                    : weather!.weatherInfo!.windMph!.toString() + ' Mph/h',
+                cloud: weather!.weatherInfo!.cloud!.toString(),
+                humidity: weather!.weatherInfo!.humidity!.toString(),
+              ),
             );
           },
         ),
