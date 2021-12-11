@@ -17,8 +17,8 @@ class LocalDetailsMyWeather extends StatelessWidget {
         MainWeatherCard(
           date: myCountryWeatherDB!.date,
           temp: temperature!.contains('C')
-              ? myCountryWeatherDB!.tempC
-              : myCountryWeatherDB!.tempF,
+              ? myCountryWeatherDB!.tempC!.toInt().toString()
+              : myCountryWeatherDB!.tempF.toString(),
           pathIcon: myCountryWeatherDB!.urlIcon,
           stateWeather: myCountryWeatherDB!.sunState,
           nameAria: myCountryWeatherDB!.location,

@@ -19,8 +19,8 @@ class RemoteDetailsMyWeather extends StatelessWidget {
         MainWeatherCard(
           date: currentWeather!.location!.localtime,
           temp: temperature!.contains('C')
-              ? currentWeather!.weatherInfo!.tempC
-              : currentWeather!.weatherInfo!.tempF,
+              ? currentWeather!.weatherInfo!.tempC!.toInt().toString()
+              : currentWeather!.weatherInfo!.tempF.toString(),
           pathIcon: currentWeather!.weatherInfo!.condition!.icon,
           stateWeather: currentWeather!.weatherInfo!.condition!.text,
           nameAria: currentWeather!.location!.name,

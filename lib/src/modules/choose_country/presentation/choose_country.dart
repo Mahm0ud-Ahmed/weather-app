@@ -57,7 +57,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
                                           style: const TextStyle(
                                               color: Colors.grey),
                                         ),
-                                        onTap: () async {
+                                        onTap: () {
                                           _cubit!
                                               .saveMyCountryData(
                                                   _searchCountry![index])
@@ -73,7 +73,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
                                       );
                                     },
                                     separatorBuilder: (context, index) {
-                                      return Divider();
+                                      return const Divider();
                                     },
                                     itemCount: _searchCountry!.length),
                               )

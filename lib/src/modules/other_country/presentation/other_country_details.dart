@@ -61,7 +61,9 @@ class _OtherCountryDetailsState extends State<OtherCountryDetails> {
                         children: [
                           MainWeatherCard(
                             date: currentWeather!.location!.localtime,
-                            temp: currentWeather!.weatherInfo!.tempC,
+                            temp: currentWeather!.weatherInfo!.tempC!
+                                .toInt()
+                                .toString(),
                             pathIcon:
                                 currentWeather!.weatherInfo!.condition!.icon,
                             stateWeather:

@@ -16,7 +16,7 @@ class MainWeatherCard extends StatelessWidget {
       : super(key: key);
 
   final String? date;
-  final double? temp;
+  final String? temp;
   final String? pathIcon;
   final String? stateWeather;
   final String? nameAria;
@@ -63,7 +63,7 @@ class MainWeatherCard extends StatelessWidget {
     );
   }
 
-  Widget weatherData(BuildContext context, double temp, String pathIcon) {
+  Widget weatherData(BuildContext context, String temp, String pathIcon) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
