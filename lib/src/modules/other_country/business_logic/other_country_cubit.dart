@@ -50,7 +50,7 @@ class OtherCountryCubit extends Cubit<OtherCountryState> {
     if (isFavorite!) {
       await saveCountry(favorite);
     } else {
-      deleteCountry(favorite);
+      await deleteCountry(favorite);
     }
     getFavoriteCountry();
   }
@@ -73,13 +73,13 @@ class OtherCountryCubit extends Cubit<OtherCountryState> {
   Future<void> deleteCountry(Favorite favorite) async {
     Favorite fav =
         favorites!.firstWhere((element) => element.latLong == favorite.latLong);
-    await database!.favoriteDao.deleteCountryFromFavorite(fav).then((value) {
+    int result = await database!.favoriteDao.deleteCountryFromFavorite(fav);
+    if (result > 0) {
       emit(SuccessDeleteCountry());
-    }).catchError((error) {
-      print(error.toString());
+    } else {
       isFavorite = !isFavorite!;
       emit(ErrorDeleteCountry());
-    });
+    }
   }
 
   Future<void> getWeatherDetailsForCountry(double lat, double long) async {

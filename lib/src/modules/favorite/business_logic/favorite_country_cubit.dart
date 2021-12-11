@@ -32,7 +32,7 @@ class FavoriteCountryCubit extends Cubit<FavoriteCountryState> {
       if (favorite == null) {
         favorite = allFavorite;
         emit(SuccessFavoriteCountry(favoriteCountry: allFavorite));
-      } else if (allFavorite.length > favorite!.length) {
+      } else if (allFavorite.length != favorite!.length) {
         favorite = allFavorite;
         emit(SuccessFavoriteCountry(favoriteCountry: allFavorite));
       }
