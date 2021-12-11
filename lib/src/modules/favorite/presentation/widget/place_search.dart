@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/modules/favorite/business_logic/favorite_country_cubit.dart';
 import 'package:weather_app/src/modules/favorite/business_logic/favorite_country_state.dart';
-import 'package:weather_app/src/modules/favorite/entity/remote/details_country.dart';
+import 'package:weather_app/src/core/shared/remote/search_country/entity/details_country.dart';
 import 'package:weather_app/src/modules/other_country/presentation/other_country_details.dart';
 
 class PlaceSearch extends StatefulWidget {

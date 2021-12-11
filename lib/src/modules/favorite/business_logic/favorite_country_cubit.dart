@@ -5,7 +5,7 @@ import 'package:weather_app/src/core/api_query/api_query.dart';
 import 'package:weather_app/src/core/shared/remote/api_error/entity/api_error.dart';
 import 'package:weather_app/src/data/resources/local/app_database.dart';
 import 'package:weather_app/src/modules/favorite/entity/local/favorite.dart';
-import 'package:weather_app/src/modules/favorite/entity/remote/details_country.dart';
+import 'package:weather_app/src/core/shared/remote/search_country/entity/details_country.dart';
 import 'package:weather_app/src/modules/favorite/repository/favorite_repository.dart';
 import 'package:weather_app/src/modules/home/entity/remote/country_weather.dart';
 import 'favorite_country_state.dart';

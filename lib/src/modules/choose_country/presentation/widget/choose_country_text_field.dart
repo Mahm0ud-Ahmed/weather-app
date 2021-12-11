@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/config/themes/icon_broken.dart';
-import 'package:weather_app/src/modules/favorite/business_logic/favorite_country_cubit.dart';
-import 'package:weather_app/src/modules/favorite/business_logic/favorite_country_state.dart';
+import 'package:weather_app/src/modules/choose_country/business_logic/choose_country_cubit.dart';
 
 import '../../../../core/shared/widget/custom_text_field.dart';
 
-class CountryTextField extends StatefulWidget {
-  const CountryTextField({Key? key}) : super(key: key);
+class ChooseCountryTextField extends StatefulWidget {
+  const ChooseCountryTextField({Key? key}) : super(key: key);
 
   @override
-  _CountryTextFieldState createState() => _CountryTextFieldState();
+  _ChooseCountryTextFieldState createState() => _ChooseCountryTextFieldState();
 }
 
-class _CountryTextFieldState extends State<CountryTextField> {
-  FavoriteCountryCubit? _cubit;
+class _ChooseCountryTextFieldState extends State<ChooseCountryTextField> {
+  ChooseCountryCubit? _cubit;
   final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
-    _cubit = FavoriteCountryCubit.get(context);
+    _cubit = ChooseCountryCubit.get(context);
     super.initState();
   }
 
@@ -31,7 +30,7 @@ class _CountryTextFieldState extends State<CountryTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FavoriteCountryCubit, FavoriteCountryState>(
+    return BlocBuilder<ChooseCountryCubit, ChooseCountryState>(
       builder: (context, state) {
         return CustomTextField(
           controller: _controller,
@@ -48,9 +47,7 @@ class _CountryTextFieldState extends State<CountryTextField> {
             ),
           ),
           hint: 'Search of Country',
-          onChange: (country) async {
-            await _cubit!.getAllCountrySearch(country!);
-          },
+          onChange: (country) => _cubit!.getAllCountrySearch(country!),
         );
       },
     );

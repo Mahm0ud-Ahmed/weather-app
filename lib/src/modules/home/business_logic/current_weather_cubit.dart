@@ -77,7 +77,7 @@ class CurrentWeatherCubit extends Cubit<CurrentWeatherState> {
     await getDataFromDatabase();
     if (hasConnection) {
       if (myCountryWeatherDB != null) {
-        database!.myCountryDao.deleteAllData();
+        await database!.myCountryDao.deleteAllData();
       }
       if (weather == null || forecasts == null) {
         await getCurrentWeather(APIQuery(nameLocation: country));

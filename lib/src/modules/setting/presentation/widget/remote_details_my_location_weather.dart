@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/config/themes/icon_broken.dart';
 import 'package:weather_app/src/core/shared/widget/weather_details.dart';
 import 'package:weather_app/src/core/utils/constant.dart';
+import 'package:weather_app/src/modules/choose_country/presentation/choose_country.dart';
 import 'package:weather_app/src/modules/setting/business_logic/setting_weather_cubit.dart';
 
 class RemoteDetailsMyLocationWeather extends StatelessWidget {
@@ -38,7 +39,13 @@ class RemoteDetailsMyLocationWeather extends StatelessWidget {
             locationAddress!,
             style: Theme.of(context).textTheme.headline6,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) {
+                return const ChooseCountry();
+              },
+            ));
+          },
         ),
         const SizedBox(
           height: 8,

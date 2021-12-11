@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:weather_app/src/core/api_query/api_query.dart';
 import 'package:weather_app/src/core/shared/remote/api_error/model/api_error_model.dart';
+import 'package:weather_app/src/core/shared/remote/search_country/model/search_country_model.dart';
 import 'package:weather_app/src/core/utils/constant.dart';
 import 'package:weather_app/src/data/resources/remote/weather_api.dart';
-import 'package:weather_app/src/modules/favorite/model/remote/search_country_model.dart';
 import 'package:weather_app/src/modules/forecast/model/forecast_model.dart';
 import 'package:weather_app/src/modules/home/model/country_weather_model.dart';
 

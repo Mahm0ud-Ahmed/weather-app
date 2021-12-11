@@ -38,7 +38,7 @@ class MainWeatherCard extends StatelessWidget {
             dayAndDate(context, date!),
             weatherData(context, temp!, pathIcon!),
             textWeather(context, stateWeather!),
-            locationData(context, nameAria!, country!),
+            locationData(),
           ],
         ),
       ),
@@ -106,7 +106,7 @@ class MainWeatherCard extends StatelessWidget {
     );
   }
 
-  Widget locationData(BuildContext context, String aria, String country) {
+  Widget locationData() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
@@ -115,7 +115,7 @@ class MainWeatherCard extends StatelessWidget {
           const SizedBox(
             width: 4,
           ),
-          Text('$aria${', '}$country'),
+          Text(locationAddress!),
         ],
       ),
     );

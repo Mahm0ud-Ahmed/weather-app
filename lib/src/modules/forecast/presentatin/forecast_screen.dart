@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/src/core/utils/constant.dart';
 import 'package:weather_app/src/modules/forecast/presentatin/widget/forecast_grid.dart';
 
 class ForecastScreen extends StatelessWidget {
@@ -6,8 +7,15 @@ class ForecastScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: ForecastGrid(),
+    return SafeArea(
+      child: hasConnection
+          ? const ForecastGrid()
+          : Center(
+              child: Text(
+              'please check your Internet connection!',
+              style: Theme.of(context).textTheme.headline6,
+              textAlign: TextAlign.center,
+            )),
     );
   }
 }

@@ -27,7 +27,7 @@ class _SearchAndFavoriteItemState extends State<SearchAndFavoriteItem> {
   Widget build(BuildContext context) {
     return BlocBuilder<FavoriteCountryCubit, FavoriteCountryState>(
       builder: (context, state) {
-        return _cubit!.favorite != null
+        return _cubit!.favorite != null && _cubit!.favorite!.isNotEmpty
             ? Stack(
                 children: [
                   GridView.builder(
@@ -72,7 +72,11 @@ class _SearchAndFavoriteItemState extends State<SearchAndFavoriteItem> {
                   const PlaceSearch(),
                 ],
               )
-            : const Center(child: CircularProgressIndicator());
+            : Text(
+                'not Found any Favorite Country!',
+                style: Theme.of(context).textTheme.headline6,
+                textAlign: TextAlign.center,
+              );
       },
     );
   }

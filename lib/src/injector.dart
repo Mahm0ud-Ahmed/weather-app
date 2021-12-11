@@ -3,6 +3,8 @@ import 'package:weather_app/src/core/utils/constant.dart';
 import 'package:weather_app/src/data/repositories/main_repository.dart';
 import 'package:weather_app/src/data/resources/local/app_database.dart';
 import 'package:weather_app/src/data/resources/remote/weather_api.dart';
+import 'package:weather_app/src/modules/choose_country/business_logic/choose_country_cubit.dart';
+import 'package:weather_app/src/modules/choose_country/repository/choose_country_repository.dart';
 import 'package:weather_app/src/modules/favorite/business_logic/favorite_country_cubit.dart';
 import 'package:weather_app/src/modules/favorite/repository/favorite_repository.dart';
 import 'package:weather_app/src/modules/forecast/business_logic/forecast_weather_cubit.dart';
@@ -50,6 +52,11 @@ initializeDependencies() async {
     OtherCountryRepository(repository: injector()),
   );
 
+  // Sub Choose Country Repository Dependence
+  injector.registerSingleton<ChooseCountryRepository>(
+    ChooseCountryRepository(repository: injector()),
+  );
+
   // Current Weather Cubit Dependence
   injector.registerFactory<CurrentWeatherCubit>(
     () => CurrentWeatherCubit(repository: injector(), database: injector()),
@@ -69,4 +76,7 @@ initializeDependencies() async {
       () => OtherCountryCubit(database: injector(), repository: injector()));
 
   injector.registerFactory<SettingWeatherCubit>(() => SettingWeatherCubit());
+
+  injector.registerFactory<ChooseCountryCubit>(
+      () => ChooseCountryCubit(repository: injector()));
 }

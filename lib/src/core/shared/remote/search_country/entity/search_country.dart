@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:weather_app/src/modules/favorite/entity/remote/details_country.dart';
+
+import 'details_country.dart';
 
 class SearchCountry extends Equatable {
   List<DetailsCountry>? details;

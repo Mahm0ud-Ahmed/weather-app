@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/src/core/shared/remote/api_error/entity/api_error.dart';
 import 'package:weather_app/src/modules/favorite/entity/local/favorite.dart';
-import 'package:weather_app/src/modules/favorite/entity/remote/details_country.dart';
+import 'package:weather_app/src/core/shared/remote/search_country/entity/details_country.dart';
 
 @immutable
 abstract class FavoriteCountryState {

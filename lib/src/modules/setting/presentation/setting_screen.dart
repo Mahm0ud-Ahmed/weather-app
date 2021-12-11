@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/core/utils/constant.dart';
-import 'package:weather_app/src/data/resources/local/storage_pref.dart';
 import 'package:weather_app/src/modules/setting/business_logic/setting_weather_cubit.dart';
 import 'package:weather_app/src/modules/setting/presentation/widget/local_details_my_location_weather.dart';
 import 'package:weather_app/src/modules/setting/presentation/widget/remote_details_my_location_weather.dart';
