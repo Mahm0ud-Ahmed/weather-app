@@ -21,8 +21,7 @@ class LocalDetailsMyWeather extends StatelessWidget {
               : myCountryWeatherDB!.tempF.toString(),
           pathIcon: myCountryWeatherDB!.urlIcon,
           stateWeather: myCountryWeatherDB!.sunState,
-          nameAria: myCountryWeatherDB!.location,
-          country: '',
+          locationAddress: locationAddress,
         ),
         WeatherDetails(
           humidity: myCountryWeatherDB!.humidity.toString(),

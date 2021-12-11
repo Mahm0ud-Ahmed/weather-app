@@ -91,6 +91,7 @@ class CurrentWeatherCubit extends Cubit<CurrentWeatherState> {
         }
       }
     } else {
+      await getDataFromDatabase();
       emit(SuccessCurrentWeatherDatabase(
           myCountryWeatherDB: myCountryWeatherDB));
     }

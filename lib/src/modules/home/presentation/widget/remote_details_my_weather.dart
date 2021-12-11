@@ -23,8 +23,7 @@ class RemoteDetailsMyWeather extends StatelessWidget {
               : currentWeather!.weatherInfo!.tempF.toString(),
           pathIcon: currentWeather!.weatherInfo!.condition!.icon,
           stateWeather: currentWeather!.weatherInfo!.condition!.text,
-          nameAria: currentWeather!.location!.name,
-          country: currentWeather!.location!.country,
+          locationAddress: locationAddress,
         ),
         WeatherDetails(
           humidity: currentWeather!.weatherInfo!.humidity.toString(),

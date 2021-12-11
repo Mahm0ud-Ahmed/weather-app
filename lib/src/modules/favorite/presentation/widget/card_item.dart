@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/src/config/themes/icon_broken.dart';
+import 'package:weather_app/src/core/utils/constant.dart';
 
 class CardItem extends StatelessWidget {
   const CardItem(
@@ -47,12 +48,18 @@ class CardItem extends StatelessWidget {
                           .headline3!
                           .copyWith(fontSize: 24, color: Colors.blue.shade300),
                     ),
-                    FadeInImage.assetNetwork(
-                      placeholder: 'assets/images/no_image.png',
-                      image: urlIcon!.replaceAll('//', 'https://'),
-                      width: 64,
-                      height: 64,
-                    ),
+                    hasConnection
+                        ? FadeInImage.assetNetwork(
+                            placeholder: 'assets/images/no_image.png',
+                            image: urlIcon!.replaceAll('//', 'https://'),
+                            width: 64,
+                            height: 64,
+                          )
+                        : Image.asset(
+                            'assets/images/no_image.png',
+                            width: 64,
+                            height: 64,
+                          ),
                   ],
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                 ),

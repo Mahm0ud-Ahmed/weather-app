@@ -5,22 +5,20 @@ import 'package:weather_app/src/core/shared/widget/custom_container_with_shadow.
 import 'package:weather_app/src/core/utils/constant.dart';
 
 class MainWeatherCard extends StatelessWidget {
-  const MainWeatherCard(
-      {Key? key,
-      this.date,
-      this.temp,
-      this.pathIcon,
-      this.stateWeather,
-      this.nameAria,
-      this.country})
-      : super(key: key);
+  const MainWeatherCard({
+    Key? key,
+    this.date,
+    this.temp,
+    this.pathIcon,
+    this.stateWeather,
+    this.locationAddress,
+  }) : super(key: key);
 
   final String? date;
   final String? temp;
   final String? pathIcon;
   final String? stateWeather;
-  final String? nameAria;
-  final String? country;
+  final String? locationAddress;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +36,7 @@ class MainWeatherCard extends StatelessWidget {
             dayAndDate(context, date!),
             weatherData(context, temp!, pathIcon!),
             textWeather(context, stateWeather!),
-            locationData(),
+            locationData(locationAddress!),
           ],
         ),
       ),
@@ -106,7 +104,7 @@ class MainWeatherCard extends StatelessWidget {
     );
   }
 
-  Widget locationData() {
+  Widget locationData(String locationAddress) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
@@ -115,7 +113,7 @@ class MainWeatherCard extends StatelessWidget {
           const SizedBox(
             width: 4,
           ),
-          Text(locationAddress!),
+          Text(locationAddress),
         ],
       ),
     );

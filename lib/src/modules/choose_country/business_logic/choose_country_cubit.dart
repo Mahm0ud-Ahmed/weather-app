@@ -37,6 +37,7 @@ class ChooseCountryCubit extends Cubit<ChooseCountryState> {
 
   Future<void> saveMyCountryData(DetailsCountry detailsCountry) async {
     try {
+      weather = null;
       country =
           detailsCountry.lat.toString() + ',' + detailsCountry.lon.toString();
       locationAddress = detailsCountry.name.toString();
