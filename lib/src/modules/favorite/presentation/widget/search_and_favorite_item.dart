@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/src/core/utils/constant.dart';
 import 'package:weather_app/src/modules/favorite/business_logic/favorite_country_cubit.dart';
 import 'package:weather_app/src/modules/favorite/business_logic/favorite_country_state.dart';
 import 'package:weather_app/src/modules/favorite/presentation/widget/card_item.dart';
@@ -27,7 +28,7 @@ class _SearchAndFavoriteItemState extends State<SearchAndFavoriteItem> {
   Widget build(BuildContext context) {
     return BlocBuilder<FavoriteCountryCubit, FavoriteCountryState>(
       builder: (context, state) {
-        return _cubit!.favorite != null && _cubit!.favorite!.isNotEmpty
+        return _cubit!.favorite != null
             ? Stack(
                 children: [
                   GridView.builder(
@@ -56,7 +57,11 @@ class _SearchAndFavoriteItemState extends State<SearchAndFavoriteItem> {
                         },
                         child: CardItem(
                           date: _cubit!.favorite![index].date,
-                          temp: _cubit!.favorite![index].tempC.toString(),
+                          temp: temperature!.contains('C')
+                              ? _cubit!.favorite![index].tempC!
+                                  .toInt()
+                                  .toString()
+                              : _cubit!.favorite![index].tempF.toString(),
                           urlIcon: _cubit!.favorite![index].urlIcon,
                           region: _cubit!.favorite![index].region,
                           country: _cubit!.favorite![index].country,

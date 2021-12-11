@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/src/core/utils/constant.dart';
 import 'package:weather_app/src/modules/forecast/business_logic/forecast_weather_cubit.dart';
 import 'package:weather_app/src/modules/forecast/business_logic/forecast_weather_state.dart';
 import 'package:weather_app/src/modules/forecast/entity/forecast_day.dart';
@@ -50,8 +51,12 @@ class _ForecastGridState extends State<ForecastGrid> {
                   index: index,
                   dayName:
                       _cubit!.convertDateToDayName(_forecasts![index].date!),
-                  maxTemp: _forecasts![index].dayInfo!.maxTempC.toString(),
-                  minTemp: _forecasts![index].dayInfo!.minTempC.toString(),
+                  maxTemp: temperature!.contains('C')
+                      ? _forecasts![index].dayInfo!.maxTempC.toString()
+                      : _forecasts![index].dayInfo!.maxTempF.toString(),
+                  minTemp: temperature!.contains('C')
+                      ? _forecasts![index].dayInfo!.minTempC.toString()
+                      : _forecasts![index].dayInfo!.minTempF.toString(),
                   pathImg: _forecasts![index]
                       .dayInfo!
                       .condition!
