@@ -24,12 +24,6 @@ class _ChooseCountryState extends State<ChooseCountry> {
   }
 
   @override
-  void dispose() {
-    _cubit!.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -84,7 +78,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
                                     itemCount: _searchCountry!.length),
                               )
                             : Text(
-                                'Enter Search Word',
+                                'Search any Country',
                                 style: Theme.of(context).textTheme.headline6,
                                 textAlign: TextAlign.center,
                               );
