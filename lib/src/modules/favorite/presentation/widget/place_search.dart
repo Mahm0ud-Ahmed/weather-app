@@ -43,11 +43,11 @@ class _PlaceSearchState extends State<PlaceSearch> {
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: Text(
-                        _cubit!.cutWordFromText(_countries![index].name!),
+                        _countries![index].name!,
                         style: const TextStyle(color: Colors.white),
                       ),
                       subtitle: Text(
-                        _countries![index].name!,
+                        _countries![index].url!,
                         style: const TextStyle(color: Colors.white70),
                       ),
                       onTap: () {

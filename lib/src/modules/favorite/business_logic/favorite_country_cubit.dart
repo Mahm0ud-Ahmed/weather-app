@@ -74,7 +74,8 @@ class FavoriteCountryCubit extends Cubit<FavoriteCountryState> {
   Future<void> updateCountry(Favorite favorite) async {
     Favorite updateFav = favorite;
     List<double> latAndLong = convertToDouble(favorite.latLong!);
-    getOtherCountryWeather(latAndLong.first, latAndLong.last).then((value) {
+    getOtherCountryWeather(latAndLong.first, latAndLong.last)
+        .then((value) async {
       updateFav.date = weather!.location!.localtime!.split(' ').first;
       updateFav.region = weather!.location!.name!;
       updateFav.country = weather!.location!.country!;
@@ -86,12 +87,21 @@ class FavoriteCountryCubit extends Cubit<FavoriteCountryState> {
       updateFav.humidity = weather!.weatherInfo!.humidity!;
       updateFav.wind = weather!.weatherInfo!.windKph!;
       updateFav.urlIcon = weather!.weatherInfo!.condition!.icon!;
-      database!.favoriteDao.updateCountryInFavorite(updateFav).then((value) {
-        getFavoriteCountry();
-      }).catchError((error) {
-        print(error.toString());
-      });
+      await sendDataToDB(updateFav);
     });
+  }
+
+  Future<bool> sendDataToDB(Favorite favorite) async {
+    bool isSuccess;
+    int result = await database!.favoriteDao.updateCountryInFavorite(favorite);
+    if (result > 0) {
+      isSuccess = true;
+      emit(SuccessCountryUpdateDetails());
+    } else {
+      isSuccess = false;
+      emit(ErrorCountryUpdateDetails());
+    }
+    return isSuccess;
   }
 
   Future<void> getOtherCountryWeather(double lat, double long) async {

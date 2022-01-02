@@ -36,4 +36,6 @@ class ErrorCountryUpdateDetails extends FavoriteCountryState {
   ErrorCountryUpdateDetails({APIError? error}) : super(error: error);
 }
 
+class SuccessCountryUpdateDetails extends FavoriteCountryState {}
+
 class ClearSearchList extends FavoriteCountryState {}

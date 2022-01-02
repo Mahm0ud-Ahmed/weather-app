@@ -47,13 +47,12 @@ class _ChooseCountryState extends State<ChooseCountry> {
                                     itemBuilder: (context, index) {
                                       return ListTile(
                                         title: Text(
-                                          _cubit!.cutWordFromText(
-                                              _searchCountry![index].name!),
+                                          _searchCountry![index].name!,
                                           style: const TextStyle(
                                               color: Colors.black),
                                         ),
                                         subtitle: Text(
-                                          _searchCountry![index].name!,
+                                          _searchCountry![index].url!,
                                           style: const TextStyle(
                                               color: Colors.grey),
                                         ),
